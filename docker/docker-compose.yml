@@ -1,0 +1,78 @@
+name: retekgpt-backend
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: retekgpt-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: retekgpt
+      POSTGRES_PASSWORD: retekgpt
+      POSTGRES_DB: retekgpt
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U retekgpt"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    container_name: retekgpt-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  backend:
+    build:
+      context: ../
+      dockerfile: apps/backend/Dockerfile
+    container_name: retekgpt-backend
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      PORT: 4000
+      FRONTEND_URL: http://localhost:3000
+      DATABASE_URL: postgresql://retekgpt:retekgpt@postgres:5432/retekgpt?schema=public
+      REDIS_URL: redis://redis:6379
+      JWT_SECRET: ${JWT_SECRET:-change-me-in-production-super-secret-key}
+      JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET:-change-me-refresh-secret-key}
+      JWT_EXPIRES_IN: 15m
+      JWT_REFRESH_EXPIRES_IN: 7d
+    ports:
+      - "4000:4000"
+    command: sh -c "npx prisma migrate deploy && npx prisma db seed && node dist/main.js"
+
+  frontend:
+    build:
+      context: ../
+      dockerfile: apps/frontend/Dockerfile
+    container_name: retekgpt-frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    environment:
+      NODE_ENV: production
+      NEXT_PUBLIC_API_URL: http://localhost:4000
+      NEXT_PUBLIC_SOCKET_URL: http://localhost:4000
+    ports:
+      - "3000:3000"
+
+volumes:
+  postgres_data:
+  redis_data:

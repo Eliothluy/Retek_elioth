@@ -1,0 +1,261 @@
+// RetekGPT — Prisma schema
+// Social task management platform for developer teams
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ---------------------------------------------------------------------------
+// Enums
+// ---------------------------------------------------------------------------
+
+enum UserRole {
+  ADMIN
+  MANAGER
+  DEVELOPER
+}
+
+enum TaskStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  LATE
+}
+
+enum TaskPriority {
+  HIGH
+  MEDIUM
+  LOW
+}
+
+enum ActivityType {
+  TASK_CREATED
+  TASK_UPDATED
+  TASK_COMPLETED
+  TASK_LATE
+  COMMENT_POSTED
+  RANK_UP
+  BADGE_EARNED
+}
+
+enum NotificationType {
+  TASK_ASSIGNED
+  DEADLINE_APPROACHING
+  TASK_LATE
+  FEED_INTERACTION
+  RANK_UPDATE
+  SYSTEM
+}
+
+enum RankingCategory {
+  PERFORMANCE
+  COMPLETED
+  LATE
+  ACTIVITY
+}
+
+// ---------------------------------------------------------------------------
+// Auth
+// ---------------------------------------------------------------------------
+
+model User {
+  id            String   @id @default(uuid())
+  email         String   @unique
+  name          String
+  title         String?
+  bio           String?
+  avatarUrl     String?
+  password      String?
+  role          UserRole @default(DEVELOPER)
+  points        Int      @default(0)
+  badges        Json     @default("[]")
+  oauthProvider String?
+  oauthId       String?
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  refreshTokens  RefreshToken[]
+  ownedProjects  Project[]       @relation("ProjectOwner")
+  memberships    ProjectMember[]
+  createdTasks   Task[]          @relation("TaskCreator")
+  assignedTasks  Task[]          @relation("TaskAssignee")
+  activities     ActivityFeed[]
+  likes          Like[]
+  comments       Comment[]
+  notifications  Notification[]
+  rankings       Ranking[]
+
+  @@index([role])
+  @@index([oauthProvider, oauthId])
+}
+
+model RefreshToken {
+  id        String   @id @default(uuid())
+  token     String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  revoked   Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+}
+
+// ---------------------------------------------------------------------------
+// Projects
+// ---------------------------------------------------------------------------
+
+model Project {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  color       String   @default("#3B82F6")
+  ownerId     String
+  owner       User     @relation("ProjectOwner", fields: [ownerId], references: [id])
+  members     ProjectMember[]
+  tasks       Task[]
+  activities  ActivityFeed[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([ownerId])
+}
+
+model ProjectMember {
+  projectId String
+  userId    String
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  joinedAt  DateTime @default(now())
+
+  @@id([projectId, userId])
+  @@index([userId])
+}
+
+// ---------------------------------------------------------------------------
+// Tasks
+// ---------------------------------------------------------------------------
+
+model Task {
+  id          String       @id @default(uuid())
+  title       String
+  description String?
+  module      String?
+  projectId   String?
+  project     Project?     @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  assigneeId  String?
+  assignee    User?        @relation("TaskAssignee", fields: [assigneeId], references: [id], onDelete: SetNull)
+  createdById String
+  createdBy   User         @relation("TaskCreator", fields: [createdById], references: [id])
+  startDate   DateTime
+  endDate     DateTime
+  completedAt DateTime?
+  status      TaskStatus   @default(PENDING)
+  priority    TaskPriority @default(MEDIUM)
+  alert       Boolean      @default(false)
+  isLate      Boolean      @default(false)
+  timeSpentMinutes Int     @default(0)
+  pomodoroSessions Int    @default(0)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  activities ActivityFeed[]
+
+  @@index([projectId])
+  @@index([assigneeId])
+  @@index([status])
+  @@index([isLate])
+}
+
+// ---------------------------------------------------------------------------
+// Social Feed
+// ---------------------------------------------------------------------------
+
+model ActivityFeed {
+  id        String       @id @default(uuid())
+  type      ActivityType
+  actorId   String
+  actor     User         @relation(fields: [actorId], references: [id], onDelete: Cascade)
+  taskId    String?
+  task      Task?        @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  projectId String?
+  project   Project?     @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  metadata  Json         @default("{}")
+  likes     Like[]
+  comments  Comment[]
+  createdAt DateTime     @default(now())
+
+  @@index([actorId])
+  @@index([projectId])
+  @@index([createdAt])
+  @@index([type])
+}
+
+model Like {
+  id         String       @id @default(uuid())
+  activityId String
+  activity   ActivityFeed @relation(fields: [activityId], references: [id], onDelete: Cascade)
+  userId     String
+  user       User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt  DateTime     @default(now())
+
+  @@unique([activityId, userId])
+  @@index([userId])
+}
+
+model Comment {
+  id         String       @id @default(uuid())
+  activityId String
+  activity   ActivityFeed @relation(fields: [activityId], references: [id], onDelete: Cascade)
+  userId     String
+  user       User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  content    String
+  createdAt  DateTime     @default(now())
+
+  @@index([activityId])
+  @@index([userId])
+}
+
+// ---------------------------------------------------------------------------
+// Notifications
+// ---------------------------------------------------------------------------
+
+model Notification {
+  id        String           @id @default(uuid())
+  userId    String
+  user      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type      NotificationType
+  title     String
+  message   String
+  read      Boolean          @default(false)
+  link      String?
+  metadata  Json             @default("{}")
+  createdAt DateTime         @default(now())
+
+  @@index([userId, read])
+  @@index([createdAt])
+}
+
+// ---------------------------------------------------------------------------
+// Ranking
+// ---------------------------------------------------------------------------
+
+model Ranking {
+  id        String          @id @default(uuid())
+  userId    String
+  user      User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  category  RankingCategory
+  score     Int             @default(0)
+  rank      Int             @default(0)
+  period    String          @default("all-time")
+  updatedAt DateTime        @updatedAt
+
+  @@unique([userId, category, period])
+  @@index([category, period, score])
+}

@@ -1,0 +1,13 @@
+**/node_modules
+**/dist
+**/.next
+**/.turbo
+**/coverage
+.git
+.gitignore
+docker/data
+*.log
+.env
+.env.local
+apps/frontend/.next
+apps/backend/dist
