@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🍅 RetekGPT
+# 🍅 Retek
 
 ### Plataforma de gestão de tarefas com rede social para equipes de desenvolvimento
 
