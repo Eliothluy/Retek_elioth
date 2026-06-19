@@ -19,7 +19,12 @@ import { JwtStrategy } from "./strategies/jwt.strategy";
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, JwtStrategy],
+  providers: [
+    AuthService,
+    JwtStrategy,
+    ...(process.env.GOOGLE_CLIENT_ID ? [require("./strategies/google.strategy").GoogleStrategy] : []),
+    ...(process.env.GITHUB_CLIENT_ID ? [require("./strategies/github.strategy").GithubStrategy] : []),
+  ],
   exports: [AuthService, JwtModule],
 })
 export class AuthModule {}

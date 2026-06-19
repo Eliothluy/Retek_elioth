@@ -7,6 +7,8 @@ import { Avatar, Badge, Button, Card, CardContent, CardHeader, CardTitle, Skelet
 import { Modal } from "@/components/ui/modal";
 import { TaskForm } from "@/components/task-form";
 import { PomodoroModal } from "@/components/pomodoro-modal";
+import { MarkdownRenderer } from "@/components/markdown-renderer";
+import { TaskComments } from "@/components/task-comments";
 import { useTask, useUpdateTaskStatus, useDeleteTask } from "@/hooks/use-tasks";
 import { STATUS_LABELS, STATUS_COLORS, PRIORITY_LABELS, PRIORITY_COLORS } from "@/lib/constants";
 import { formatDateTime } from "@/lib/utils";
@@ -72,7 +74,7 @@ export default function TaskDetailPage() {
           </div>
         </CardHeader>
         <CardContent className="space-y-5">
-          {task.description && <p className="text-slate-700">{task.description}</p>}
+          {task.description && <MarkdownRenderer content={task.description} />}
 
           <div className="grid grid-cols-2 gap-4 rounded-xl bg-slate-50 p-4 text-sm sm:grid-cols-4">
             <div>
@@ -143,6 +145,8 @@ export default function TaskDetailPage() {
           )}
         </CardContent>
       </Card>
+
+      <TaskComments taskId={task.id} />
 
       <Modal open={editing} onClose={() => setEditing(false)} title="Editar tarefa">
         <TaskForm task={task} onDone={() => setEditing(false)} />

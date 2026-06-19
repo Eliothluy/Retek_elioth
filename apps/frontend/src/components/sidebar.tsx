@@ -9,6 +9,8 @@ import {
   FolderKanban,
   Trophy,
   Bell,
+  Calendar,
+  MessageCircle,
   Building2,
   AlertTriangle,
   Lightbulb,
@@ -47,8 +49,8 @@ function NavGroup({ title, items }: { title: string; items: NavItem[] }) {
           className={cn(
             "group flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-all",
             item.active
-              ? "bg-brand-50 text-brand-700"
-              : "text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+              ? "bg-brand-50 text-brand-700 dark:bg-brand-900/30 dark:text-brand-300"
+              : "text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-slate-100"
           )}
         >
           <item.icon
@@ -81,8 +83,10 @@ export function Sidebar() {
     { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard, active: active("/dashboard") },
     { label: "Feed", href: "/feed", icon: Rss, active: active("/feed") },
     { label: "Tarefas", href: "/tasks", icon: CheckSquare, active: active("/tasks") },
+    { label: "Calendário", href: "/calendar", icon: Calendar, active: active("/calendar") },
     { label: "Projetos", href: "/projects", icon: FolderKanban, active: active("/projects") },
     { label: "Ranking", href: "/ranking", icon: Trophy, active: active("/ranking") },
+    { label: "Mensagens", href: "/messages", icon: MessageCircle, active: active("/messages") },
     {
       label: "Notificações",
       href: "/notifications",
@@ -115,10 +119,10 @@ export function Sidebar() {
   ];
 
   return (
-    <aside className="hidden h-screen w-64 shrink-0 flex-col border-r border-slate-200 bg-white lg:flex">
+    <aside className="hidden h-screen w-64 shrink-0 flex-col border-r border-slate-200 bg-white lg:flex dark:border-slate-700 dark:bg-slate-800">
       <div className="flex h-16 items-center gap-2 px-5">
         <span className="grid h-9 w-9 place-items-center rounded-xl gradient-brand text-white shadow-soft">R</span>
-        <span className="text-lg font-bold text-slate-900">RetekGPT</span>
+        <span className="text-lg font-bold text-slate-900 dark:text-slate-100">RetekGPT</span>
       </div>
 
       <nav className="flex-1 overflow-y-auto px-3 pb-6 scrollbar-thin">

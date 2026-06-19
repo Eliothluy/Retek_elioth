@@ -9,7 +9,7 @@
   }
 
   * {
-    @apply border-slate-200;
+    @apply border-slate-200 dark:border-slate-700;
   }
 
   html {
@@ -17,12 +17,12 @@
   }
 
   body {
-    @apply bg-neutral-50 text-slate-800 antialiased;
+    @apply bg-neutral-50 text-slate-800 antialiased dark:bg-neutral-900 dark:text-slate-200;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 
   ::selection {
-    @apply bg-brand-200 text-brand-800;
+    @apply bg-brand-200 text-brand-800 dark:bg-brand-700 dark:text-white;
   }
 }
 
@@ -36,14 +36,14 @@
     height: 6px;
   }
   .scrollbar-thin::-webkit-scrollbar-thumb {
-    @apply rounded-full bg-slate-300;
+    @apply rounded-full bg-slate-300 dark:bg-slate-600;
   }
   .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-    @apply bg-slate-400;
+    @apply bg-slate-400 dark:bg-slate-500;
   }
 
   .glass {
-    @apply border border-white/60 bg-white/80 backdrop-blur-md;
+    @apply border border-white/60 bg-white/80 backdrop-blur-md dark:border-slate-700/60 dark:bg-slate-800/80;
   }
 
   .gradient-brand {

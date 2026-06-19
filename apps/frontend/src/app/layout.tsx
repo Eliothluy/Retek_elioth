@@ -21,6 +21,7 @@ export const metadata: Metadata = {
     locale: "pt_BR",
   },
   robots: { index: true, follow: true },
+  manifest: "/manifest.json",
 };
 
 export const viewport: Viewport = {
@@ -32,6 +33,13 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR" className={inter.variable} suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('retek-theme');if(t&&t.includes('"dark"')){document.documentElement.classList.add('dark');}}catch(e){}})();`,
+          }}
+        />
+      </head>
       <body className="font-sans">
         <Providers>{children}</Providers>
       </body>

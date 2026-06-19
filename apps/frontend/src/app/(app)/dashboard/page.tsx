@@ -10,6 +10,8 @@ import { useTasks } from "@/hooks/use-tasks";
 import { useFeed } from "@/hooks/use-feed";
 import { useRankingCategory } from "@/hooks/use-ranking";
 import { RankingBoard } from "@/components/ranking-board";
+import { ChartsGrid } from "@/components/charts-grid";
+import { ReportButton } from "@/components/report-button";
 
 function StatCard({ icon: Icon, label, value, color }: { icon: React.ComponentType<{ className?: string }>; label: string; value: number; color: string }) {
   return (
@@ -55,6 +57,7 @@ export default function DashboardPage() {
             Ver todas as tarefas <ArrowRight className="h-4 w-4" />
           </Button>
         </Link>
+        <ReportButton />
       </div>
 
       <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
@@ -63,6 +66,8 @@ export default function DashboardPage() {
         <StatCard icon={AlertTriangle} label="Atrasadas" value={myLate.length} color="bg-rose-500" />
         <StatCard icon={Zap} label="Pontos" value={user?.points ?? 0} color="bg-amber-500" />
       </div>
+
+      <ChartsGrid />
 
       <div className="grid gap-6 lg:grid-cols-3">
         <div className="lg:col-span-2 space-y-4">

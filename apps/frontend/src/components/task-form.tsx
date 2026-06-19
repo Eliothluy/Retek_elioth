@@ -6,6 +6,7 @@ import { useProjects, useUsers } from "@/hooks/use-misc";
 import { useCreateTask, useUpdateTask } from "@/hooks/use-tasks";
 import type { Task, TaskPriority, TaskStatus } from "@/types";
 import { toInputDate } from "@/lib/utils";
+import { MarkdownEditor } from "./markdown-editor";
 
 interface TaskFormProps {
   task?: Task | null;
@@ -63,10 +64,12 @@ export function TaskForm({ task, onDone }: TaskFormProps) {
         <Input value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} required placeholder="Ex: Implementar autenticação" />
       </div>
 
-      <div className="space-y-1.5">
-        <label className="text-sm font-medium text-slate-700">Descrição</label>
-        <Textarea value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} rows={3} />
-      </div>
+      <MarkdownEditor
+        label="Descrição"
+        value={form.description}
+        onChange={(v) => setForm({ ...form, description: v })}
+        rows={4}
+      />
 
       <div className="grid grid-cols-2 gap-4">
         <div className="space-y-1.5">

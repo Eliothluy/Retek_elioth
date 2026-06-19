@@ -1,19 +1,22 @@
 "use client";
 
 import { Award, Zap, CheckCircle2, Calendar } from "lucide-react";
-import { Avatar, Card, CardContent, CardHeader, CardTitle, Skeleton } from "@retekgpt/ui";
+import { Avatar, Card, CardContent, CardHeader, CardTitle, Skeleton, cn } from "@retekgpt/ui";
 import { useAuthStore } from "@/stores/auth-store";
 import { useTasks } from "@/hooks/use-tasks";
 import { useRankingCategory } from "@/hooks/use-ranking";
+import { useBadges, BADGE_META, ALL_BADGE_TYPES } from "@/hooks/use-badges";
 import { formatDate } from "@/lib/utils";
 
 export default function ProfilePage() {
   const { user } = useAuthStore();
   const { data: tasks = [] } = useTasks();
   const { data: ranking } = useRankingCategory("PERFORMANCE");
+  const { data: earnedBadges = [] } = useBadges();
   const myTasks = tasks.filter((t) => t.assigneeId === user?.id);
   const completed = myTasks.filter((t) => t.status === "COMPLETED").length;
   const myRank = ranking?.find((r) => r.userId === user?.id);
+  const earnedTypes = new Set(earnedBadges.map((b) => b.type));
 
   if (!user) return <Skeleton className="h-96 rounded-2xl" />;
 
@@ -22,47 +25,58 @@ export default function ProfilePage() {
       <Card className="overflow-hidden">
         <div className="h-24 gradient-brand" />
         <CardContent className="-mt-12 flex items-end gap-4 pb-6">
-          <Avatar src={user.avatarUrl ?? undefined} fallback={user.name} size="lg" className="ring-4 ring-white" />
+          <Avatar src={user.avatarUrl ?? undefined} fallback={user.name} size="lg" className="ring-4 ring-white dark:ring-slate-800" />
           <div className="pb-1">
-            <h1 className="text-xl font-bold text-slate-900">{user.name}</h1>
-            <p className="text-sm text-slate-500">{user.title ?? "Desenvolvedor"} · {user.email}</p>
+            <h1 className="text-xl font-bold text-slate-900 dark:text-slate-100">{user.name}</h1>
+            <p className="text-sm text-slate-500 dark:text-slate-400">{user.title ?? "Desenvolvedor"} · {user.email}</p>
           </div>
         </CardContent>
       </Card>
 
       <div className="grid grid-cols-3 gap-4">
-        <Card className="p-5 text-center">
+        <Card className="p-5 text-center dark:bg-slate-800">
           <Zap className="mx-auto h-6 w-6 text-amber-500" />
-          <p className="mt-2 text-2xl font-bold text-slate-900">{user.points}</p>
-          <p className="text-xs text-slate-500">Pontos</p>
+          <p className="mt-2 text-2xl font-bold text-slate-900 dark:text-slate-100">{user.points}</p>
+          <p className="text-xs text-slate-500 dark:text-slate-400">Pontos</p>
         </Card>
-        <Card className="p-5 text-center">
+        <Card className="p-5 text-center dark:bg-slate-800">
           <CheckCircle2 className="mx-auto h-6 w-6 text-emerald-500" />
-          <p className="mt-2 text-2xl font-bold text-slate-900">{completed}</p>
-          <p className="text-xs text-slate-500">Concluídas</p>
+          <p className="mt-2 text-2xl font-bold text-slate-900 dark:text-slate-100">{completed}</p>
+          <p className="text-xs text-slate-500 dark:text-slate-400">Concluídas</p>
         </Card>
-        <Card className="p-5 text-center">
+        <Card className="p-5 text-center dark:bg-slate-800">
           <Award className="mx-auto h-6 w-6 text-brand-500" />
-          <p className="mt-2 text-2xl font-bold text-slate-900">#{myRank?.rank ?? "—"}</p>
-          <p className="text-xs text-slate-500">Ranking</p>
+          <p className="mt-2 text-2xl font-bold text-slate-900 dark:text-slate-100">#{myRank?.rank ?? "—"}</p>
+          <p className="text-xs text-slate-500 dark:text-slate-400">Ranking</p>
         </Card>
       </div>
 
-      <Card>
+      <Card className="dark:bg-slate-800">
         <CardHeader>
-          <CardTitle>Badges 🏅</CardTitle>
+          <CardTitle className="dark:text-slate-100">Badges 🏅</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="flex flex-wrap gap-2">
-            {(user.badges ?? []).length > 0 ? (
-              (user.badges as string[]).map((b) => (
-                <span key={b} className="rounded-full bg-amber-50 px-4 py-2 text-sm font-medium text-amber-700">
-                  {b}
-                </span>
-              ))
-            ) : (
-              <p className="text-sm text-slate-400">Conclua tarefas para ganhar badges!</p>
-            )}
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+            {ALL_BADGE_TYPES.map((type) => {
+              const meta = BADGE_META[type]!;
+              const earned = earnedTypes.has(type);
+              return (
+                <div
+                  key={type}
+                  className={cn(
+                    "flex flex-col items-center gap-1 rounded-2xl border p-4 text-center transition-all",
+                    earned
+                      ? "border-amber-200 bg-amber-50/50 dark:border-amber-700/50 dark:bg-amber-900/20"
+                      : "border-slate-200 bg-slate-50 opacity-60 dark:border-slate-700 dark:bg-slate-800"
+                  )}
+                  title={meta.description}
+                >
+                  <span className={cn("text-3xl", !earned && "grayscale")}>{meta.emoji}</span>
+                  <p className="text-xs font-semibold text-slate-700 dark:text-slate-300">{meta.title}</p>
+                  <p className="text-[10px] text-slate-400">{earned ? "✓ Conquistada" : "Bloqueada"}</p>
+                </div>
+              );
+            })}
           </div>
         </CardContent>
       </Card>

@@ -4,6 +4,7 @@ import { PrismaService } from "../../common/prisma/prisma.service";
 import { RedisService } from "../../common/redis/redis.service";
 import { RealtimeService } from "../../realtime/realtime.service";
 import { NotificationsService } from "../notifications/notifications.service";
+import { BadgesService } from "../badges/badges.service";
 import { CreateTaskDto, UpdateTaskDto } from "./dto/task.dto";
 import { ActivityType, NotificationType, Prisma, TaskStatus, TaskPriority } from "@prisma/client";
 
@@ -13,7 +14,8 @@ export class TasksService {
     private readonly prisma: PrismaService,
     private readonly redis: RedisService,
     private readonly realtime: RealtimeService,
-    private readonly notifications: NotificationsService
+    private readonly notifications: NotificationsService,
+    private readonly badgesService: BadgesService,
   ) {}
 
   async create(createdById: string, dto: CreateTaskDto) {
@@ -131,6 +133,7 @@ export class TasksService {
           link: `/tasks/${task.id}`,
           metadata: { taskId: task.id, points: pointsAwarded },
         });
+        await this.badgesService.checkAndAward(task.assigneeId);
       }
     } else if (status === TaskStatus.LATE && !task.isLate) {
       data.isLate = true;
@@ -258,6 +261,7 @@ export class TasksService {
         link: `/tasks/${task.id}`,
         metadata: { taskId: task.id, minutes, bonusPoints } as Prisma.InputJsonValue,
       });
+      await this.badgesService.checkAndAward(task.assigneeId);
     }
 
     await this.redis.invalidate("tasks:all", `users:${task.assigneeId ?? actorId}`, "users:all");

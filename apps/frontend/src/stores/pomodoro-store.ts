@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { api } from "@/lib/api";
+import { useFocusStore } from "./focus-store";
 
 export type PomodoroMode = "work" | "short_break" | "long_break";
 
@@ -55,6 +56,7 @@ export const usePomodoroStore = create<PomodoroState>((set, get) => ({
     const { tickInterval, config } = get();
     if (tickInterval) clearInterval(tickInterval);
     const interval = setInterval(() => get().tick(), 1000);
+    useFocusStore.getState().enterFocus();
     set({
       mode: "work",
       timeLeft: config.work,
@@ -69,13 +71,15 @@ export const usePomodoroStore = create<PomodoroState>((set, get) => ({
   pause: () => {
     const { tickInterval } = get();
     if (tickInterval) clearInterval(tickInterval);
+    useFocusStore.getState().exitFocus();
     set({ isRunning: false, tickInterval: null });
   },
 
   resume: () => {
-    const { isRunning, tickInterval } = get();
+    const { isRunning, tickInterval, mode } = get();
     if (isRunning) return;
     if (tickInterval) clearInterval(tickInterval);
+    if (mode === "work") useFocusStore.getState().enterFocus();
     const interval = setInterval(() => get().tick(), 1000);
     set({ isRunning: true, tickInterval: interval });
   },
@@ -99,6 +103,7 @@ export const usePomodoroStore = create<PomodoroState>((set, get) => ({
   stop: () => {
     const { tickInterval } = get();
     if (tickInterval) clearInterval(tickInterval);
+    useFocusStore.getState().exitFocus();
     set({
       mode: "work",
       timeLeft: get().config.work,

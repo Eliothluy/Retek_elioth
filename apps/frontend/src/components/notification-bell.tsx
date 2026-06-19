@@ -7,6 +7,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { Button, cn } from "@retekgpt/ui";
 import { useNotifications, useUnreadCount, useMarkRead, useMarkAllRead } from "@/hooks/use-notifications";
 import { useAuthStore } from "@/stores/auth-store";
+import { useFocusStore } from "@/stores/focus-store";
 import { connectSocket } from "@/lib/socket";
 import { timeAgo } from "@/lib/utils";
 import type { Notification } from "@/types";
@@ -29,13 +30,20 @@ export function NotificationBell() {
   const markAllRead = useMarkAllRead();
   const { isAuthenticated } = useAuthStore();
   const queryClient = useQueryClient();
+  const shouldSilence = useFocusStore((s) => s.shouldSilence);
 
   useEffect(() => {
     if (!isAuthenticated) return;
     const socket = connectSocket();
     if (!socket) return;
-    const handler = () => {
+    const handler = (payload: Notification) => {
+      if (shouldSilence(payload.type)) return;
       queryClient.invalidateQueries({ queryKey: ["notifications"] });
+      if (typeof window !== "undefined" && localStorage.getItem("retek-push-enabled") === "true") {
+        import("@/lib/push").then(({ showLocalNotification }) => {
+          showLocalNotification(payload.title, { body: payload.message, tag: payload.id });
+        });
+      }
     };
     socket.on("notification", handler);
     return () => {
@@ -62,7 +70,7 @@ export function NotificationBell() {
     <div className="relative" ref={ref}>
       <button
         onClick={() => setOpen((o) => !o)}
-        className="relative grid h-10 w-10 place-items-center rounded-full text-slate-500 transition-all hover:bg-slate-100 hover:text-slate-700"
+        className="relative grid h-10 w-10 place-items-center rounded-full text-slate-500 transition-all hover:bg-slate-100 hover:text-slate-700 dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-slate-200"
         aria-label="Notificações"
       >
         <Bell className="h-5 w-5" />
@@ -74,9 +82,9 @@ export function NotificationBell() {
       </button>
 
       {open && (
-        <div className="absolute right-0 top-12 z-50 w-80 origin-top-right rounded-2xl border border-slate-200 bg-white shadow-card animate-slide-in sm:w-96">
-          <div className="flex items-center justify-between border-b border-slate-100 px-4 py-3">
-            <h3 className="text-sm font-semibold text-slate-900">Notificações</h3>
+        <div className="absolute right-0 top-12 z-50 w-80 origin-top-right rounded-2xl border border-slate-200 bg-white shadow-card animate-slide-in dark:border-slate-700 dark:bg-slate-800 sm:w-96">
+          <div className="flex items-center justify-between border-b border-slate-100 px-4 py-3 dark:border-slate-700">
+            <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-100">Notificações</h3>
             {count > 0 && (
               <Button variant="ghost" size="sm" onClick={() => markAllRead.mutate()}>
                 <Check className="h-3.5 w-3.5" /> Marcar todas

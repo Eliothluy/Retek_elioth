@@ -88,8 +88,13 @@ model User {
   activities     ActivityFeed[]
   likes          Like[]
   comments       Comment[]
+  taskComments   TaskComment[]
   notifications  Notification[]
   rankings       Ranking[]
+  badges_earned  Badge[]
+  conversations  Conversation[] @relation("ConversationUserA")
+  conversationsB Conversation[] @relation("ConversationUserB")
+  messages       Message[]
 
   @@index([role])
   @@index([oauthProvider, oauthId])
@@ -162,6 +167,7 @@ model Task {
   isLate      Boolean      @default(false)
   timeSpentMinutes Int     @default(0)
   pomodoroSessions Int    @default(0)
+  comments    TaskComment[]
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
 
@@ -258,4 +264,76 @@ model Ranking {
 
   @@unique([userId, category, period])
   @@index([category, period, score])
+}
+
+// ---------------------------------------------------------------------------
+// Badges (Gamificação)
+// ---------------------------------------------------------------------------
+
+enum BadgeType {
+  FIRST_TASK
+  STREAK_7
+  POMODORO_MASTER
+  TOP_3
+  CENTURY
+}
+
+model Badge {
+  id        String    @id @default(uuid())
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type      BadgeType
+  earnedAt  DateTime  @default(now())
+
+  @@unique([userId, type])
+  @@index([userId])
+}
+
+// ---------------------------------------------------------------------------
+// Task Comments (timeline de comentários diretos nas tarefas)
+// ---------------------------------------------------------------------------
+
+model TaskComment {
+  id        String   @id @default(uuid())
+  taskId    String
+  task      Task     @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  content   String
+  createdAt DateTime @default(now())
+
+  @@index([taskId])
+  @@index([userId])
+}
+
+// ---------------------------------------------------------------------------
+// Chat (Mensagens Diretas 1:1)
+// ---------------------------------------------------------------------------
+
+model Conversation {
+  id        String   @id @default(uuid())
+  userAId   String
+  userA     User     @relation("ConversationUserA", fields: [userAId], references: [id], onDelete: Cascade)
+  userBId   String
+  userB     User     @relation("ConversationUserB", fields: [userBId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  messages  Message[]
+
+  @@unique([userAId, userBId])
+  @@index([userBId])
+}
+
+model Message {
+  id             String   @id @default(uuid())
+  conversationId String
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  senderId       String
+  sender         User     @relation(fields: [senderId], references: [id], onDelete: Cascade)
+  content        String
+  readAt         DateTime?
+  createdAt      DateTime @default(now())
+
+  @@index([conversationId])
+  @@index([senderId])
 }

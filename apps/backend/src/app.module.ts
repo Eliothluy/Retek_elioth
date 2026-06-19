@@ -11,6 +11,10 @@ import { TasksModule } from "./modules/tasks/tasks.module";
 import { FeedModule } from "./modules/feed/feed.module";
 import { NotificationsModule } from "./modules/notifications/notifications.module";
 import { RankingModule } from "./modules/ranking/ranking.module";
+import { BadgesModule } from "./modules/badges/badges.module";
+import { TaskCommentsModule } from "./modules/task-comments/task-comments.module";
+import { StatsModule } from "./modules/stats/stats.module";
+import { MessagesModule } from "./modules/messages/messages.module";
 import { validateEnv } from "./config/env.validation";
 import { HealthController } from "./health.controller";
 
@@ -32,6 +36,10 @@ import { HealthController } from "./health.controller";
     FeedModule,
     NotificationsModule,
     RankingModule,
+    BadgesModule,
+    TaskCommentsModule,
+    StatsModule,
+    MessagesModule,
   ],
   controllers: [HealthController],
 })
