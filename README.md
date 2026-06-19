@@ -21,7 +21,7 @@ Feed social · Gamificação · Ranking · Notificações em tempo real · Modo 
 
 ## 📖 Sobre
 
-**RetekGPT** é uma plataforma de gestão de tarefas voltada para equipes de desenvolvimento que combina a leveza de um "Facebook interno" com a produtividade de ferramentas como Jira e GitHub Projects. O foco é **aumentar o engajamento** sem ser estressante — através de feed social, gamificação leve (pontos, badges, ranking), notificações em tempo real e um modo Pomodoro integrado.
+**Retek** é uma plataforma de gestão de tarefas voltada para equipes de desenvolvimento que combina a leveza de um "Facebook interno" com a produtividade de ferramentas como Jira e GitHub Projects. O foco é **aumentar o engajamento** sem ser estressante — através de feed social, gamificação leve (pontos, badges, ranking), notificações em tempo real e um modo Pomodoro integrado.
 
 ### ✨ Destaques
 
