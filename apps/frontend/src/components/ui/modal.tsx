@@ -2,7 +2,7 @@
 
 import { useEffect, type ReactNode } from "react";
 import { X } from "lucide-react";
-import { cn } from "@retekgpt/ui";
+import { cn } from "@retekapp/ui";
 
 interface ModalProps {
   open: boolean;

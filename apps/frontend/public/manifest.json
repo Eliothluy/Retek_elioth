@@ -1,6 +1,6 @@
 {
-  "name": "RetekGPT — Gestão de Tarefas",
-  "short_name": "RetekGPT",
+  "name": "Retek — Gestão de Tarefas",
+  "short_name": "Retek",
   "description": "Plataforma social de gestão de tarefas para equipes de desenvolvimento",
   "start_url": "/dashboard",
   "display": "standalone",

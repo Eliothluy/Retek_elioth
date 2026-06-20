@@ -4,7 +4,7 @@ import {
   AreaChart, Area, BarChart, Bar, PieChart, Pie, Cell,
   XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, RadialBarChart, RadialBar,
 } from "recharts";
-import { Card, CardHeader, CardTitle, CardContent, Skeleton } from "@retekgpt/ui";
+import { Card, CardHeader, CardTitle, CardContent, Skeleton } from "@retekapp/ui";
 import { useDashboardStats } from "@/hooks/use-stats";
 import { STATUS_LABELS } from "@/lib/constants";
 

@@ -1,4 +1,4 @@
-export { cn } from "@retekgpt/ui";
+export { cn } from "@retekapp/ui";
 
 export const STATUS_LABELS: Record<string, string> = {
   PENDING: "Pendente",

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Card, Skeleton } from "@retekgpt/ui";
+import { Card, Skeleton } from "@retekapp/ui";
 import { RankingBoard } from "@/components/ranking-board";
 import { useRankingAll } from "@/hooks/use-ranking";
 import { RANKING_LABELS } from "@/lib/constants";

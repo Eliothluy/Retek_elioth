@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Eye, Pencil } from "lucide-react";
-import { Textarea, cn } from "@retekgpt/ui";
+import { Textarea, cn } from "@retekapp/ui";
 import { MarkdownRenderer } from "./markdown-renderer";
 
 interface MarkdownEditorProps {

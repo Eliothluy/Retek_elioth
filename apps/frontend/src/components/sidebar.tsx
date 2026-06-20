@@ -25,7 +25,7 @@ import {
   Users,
   HeartHandshake,
 } from "lucide-react";
-import { cn } from "@retekgpt/ui";
+import { cn } from "@retekapp/ui";
 import { useUnreadCount } from "@/hooks/use-notifications";
 
 interface NavItem {
@@ -87,6 +87,7 @@ export function Sidebar() {
     { label: "Projetos", href: "/projects", icon: FolderKanban, active: active("/projects") },
     { label: "Ranking", href: "/ranking", icon: Trophy, active: active("/ranking") },
     { label: "Mensagens", href: "/messages", icon: MessageCircle, active: active("/messages") },
+    { label: "Copa do Mundo", href: "/copa", icon: Trophy, active: active("/copa") },
     {
       label: "Notificações",
       href: "/notifications",
@@ -122,7 +123,7 @@ export function Sidebar() {
     <aside className="hidden h-screen w-64 shrink-0 flex-col border-r border-slate-200 bg-white lg:flex dark:border-slate-700 dark:bg-slate-800">
       <div className="flex h-16 items-center gap-2 px-5">
         <span className="grid h-9 w-9 place-items-center rounded-xl gradient-brand text-white shadow-soft">R</span>
-        <span className="text-lg font-bold text-slate-900 dark:text-slate-100">RetekGPT</span>
+        <span className="text-lg font-bold text-slate-900 dark:text-slate-100">Retek</span>
       </div>
 
       <nav className="flex-1 overflow-y-auto px-3 pb-6 scrollbar-thin">

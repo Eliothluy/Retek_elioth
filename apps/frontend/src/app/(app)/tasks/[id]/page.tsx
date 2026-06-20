@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { ArrowLeft, Pencil, Trash2, Play, Check, AlertTriangle, Timer } from "lucide-react";
-import { Avatar, Badge, Button, Card, CardContent, CardHeader, CardTitle, Skeleton } from "@retekgpt/ui";
+import { Avatar, Badge, Button, Card, CardContent, CardHeader, CardTitle, Skeleton } from "@retekapp/ui";
 import { Modal } from "@/components/ui/modal";
 import { TaskForm } from "@/components/task-form";
 import { PomodoroModal } from "@/components/pomodoro-modal";

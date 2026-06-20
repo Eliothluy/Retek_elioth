@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Search, LogOut, User as UserIcon, Settings, Zap } from "lucide-react";
-import { Avatar, Button, cn } from "@retekgpt/ui";
+import { Avatar, Button, cn } from "@retekapp/ui";
 import { NotificationBell } from "./notification-bell";
 import { ThemeToggle } from "./theme-toggle";
 import { FocusIndicator } from "./focus-indicator";

@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  transpilePackages: ["@retekgpt/ui"],
+  transpilePackages: ["@retekapp/ui"],
   reactStrictMode: true,
   poweredByHeader: false,
   experimental: {

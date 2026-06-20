@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { Button, Input, Card } from "@retekgpt/ui";
+import { Button, Input, Card } from "@retekapp/ui";
 import { useAuthStore } from "@/stores/auth-store";
 import { ApiError } from "@/lib/api";
 
@@ -30,7 +30,7 @@ export default function RegisterPage() {
       <div className="mb-8 space-y-2">
         <div className="flex items-center gap-2 text-2xl font-bold text-slate-900">
           <span className="grid h-9 w-9 place-items-center rounded-xl gradient-brand text-white">R</span>
-          RetekGPT
+          Retek
         </div>
         <h2 className="text-xl font-semibold text-slate-700">Crie sua conta 🚀</h2>
         <p className="text-sm text-slate-500">Junte-se à sua equipe em segundos.</p>

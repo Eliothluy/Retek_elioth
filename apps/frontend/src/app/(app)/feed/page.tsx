@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
-import { Card, Skeleton } from "@retekgpt/ui";
+import { Card, Skeleton } from "@retekapp/ui";
 import { FeedItem } from "@/components/feed-item";
 import { useFeed } from "@/hooks/use-feed";
 import { connectSocket } from "@/lib/socket";

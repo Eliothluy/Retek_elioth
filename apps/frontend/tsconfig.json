@@ -1,5 +1,5 @@
 {
-  "extends": "@retekgpt/config/tsconfig.next.json",
+  "extends": "@retekapp/config/tsconfig.next.json",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {

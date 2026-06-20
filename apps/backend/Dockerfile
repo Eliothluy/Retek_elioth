@@ -13,8 +13,8 @@ RUN pnpm install --frozen-lockfile || pnpm install
 COPY apps/backend/ ./apps/backend/
 COPY packages/ ./packages/
 
-RUN pnpm --filter @retekgpt/backend exec prisma generate
-RUN pnpm --filter @retekgpt/backend run build
+RUN pnpm --filter @retekapp/backend exec prisma generate
+RUN pnpm --filter @retekapp/backend run build
 
 # ---- Runner stage ----
 FROM node:20-alpine AS runner

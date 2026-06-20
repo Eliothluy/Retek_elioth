@@ -32,7 +32,7 @@ export function exportReportPDF(data: ReportData) {
   doc.rect(0, 0, 210, 30, "F");
   doc.setTextColor(255, 255, 255);
   doc.setFontSize(18);
-  doc.text("RetekGPT — Relatório de Produtividade", 14, 15);
+  doc.text("Retek — Relatório de Produtividade", 14, 15);
   doc.setFontSize(10);
   doc.text(`Período: ${data.period}`, 14, 22);
 
@@ -70,7 +70,7 @@ export function exportReportPDF(data: ReportData) {
     alternateRowStyles: { fillColor: [248, 250, 252] },
   });
 
-  doc.save(`retekgpt-relatorio-${data.userName.toLowerCase().replace(/\s/g, "-")}-${Date.now()}.pdf`);
+  doc.save(`retek-relatorio-${data.userName.toLowerCase().replace(/\s/g, "-")}-${Date.now()}.pdf`);
 }
 
 export function exportReportCSV(data: ReportData) {
@@ -90,7 +90,7 @@ export function exportReportCSV(data: ReportData) {
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = `retekgpt-relatorio-${data.userName.toLowerCase().replace(/\s/g, "-")}-${Date.now()}.csv`;
+  a.download = `retek-relatorio-${data.userName.toLowerCase().replace(/\s/g, "-")}-${Date.now()}.csv`;
   a.click();
   URL.revokeObjectURL(url);
 }

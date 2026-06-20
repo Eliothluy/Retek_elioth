@@ -3,7 +3,7 @@
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
-import { cn } from "@retekgpt/ui";
+import { cn } from "@retekapp/ui";
 
 import "highlight.js/styles/github-dark.css";
 

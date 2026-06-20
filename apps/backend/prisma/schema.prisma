@@ -1,4 +1,4 @@
-// RetekGPT — Prisma schema
+// Retek — Prisma schema
 // Social task management platform for developer teams
 
 generator client {

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Button, Input, Textarea, Select } from "@retekgpt/ui";
+import { Button, Input, Textarea, Select } from "@retekapp/ui";
 import { useProjects, useUsers } from "@/hooks/use-misc";
 import { useCreateTask, useUpdateTask } from "@/hooks/use-tasks";
 import type { Task, TaskPriority, TaskStatus } from "@/types";

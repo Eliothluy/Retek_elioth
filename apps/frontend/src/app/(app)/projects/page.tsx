@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Plus, FolderKanban } from "lucide-react";
-import { Button, Card, Input, Textarea, Skeleton } from "@retekgpt/ui";
+import { Button, Card, Input, Textarea, Skeleton } from "@retekapp/ui";
 import { Modal } from "@/components/ui/modal";
 import { useProjects } from "@/hooks/use-misc";
 import { useQueryClient, useQuery } from "@tanstack/react-query";

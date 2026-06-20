@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { FileText, FileSpreadsheet, Download } from "lucide-react";
-import { Button, cn } from "@retekgpt/ui";
+import { Button, cn } from "@retekapp/ui";
 import { useTasks } from "@/hooks/use-tasks";
 import { useAuthStore } from "@/stores/auth-store";
 import { exportReportPDF, exportReportCSV } from "@/lib/export";

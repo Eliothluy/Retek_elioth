@@ -14,7 +14,7 @@ COPY apps/frontend/ ./apps/frontend/
 COPY packages/ ./packages/
 
 ENV NEXT_TELEMETRY_DISABLED=1
-RUN pnpm --filter @retekgpt/frontend run build
+RUN pnpm --filter @retekapp/frontend run build
 
 # ---- Runner stage ----
 FROM node:20-alpine AS runner

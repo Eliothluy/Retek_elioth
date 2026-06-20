@@ -4,7 +4,7 @@ import { useEffect, type ReactNode } from "react";
 import { useRouter } from "next/navigation";
 import { useAuthStore } from "@/stores/auth-store";
 import { getAccessToken } from "@/lib/api";
-import { Skeleton } from "@retekgpt/ui";
+import { Skeleton } from "@retekapp/ui";
 
 export function AuthGuard({ children }: { children: ReactNode }) {
   const router = useRouter();

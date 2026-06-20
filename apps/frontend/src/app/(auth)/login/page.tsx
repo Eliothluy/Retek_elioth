@@ -3,7 +3,7 @@
 import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { Button, Input, Card } from "@retekgpt/ui";
+import { Button, Input, Card } from "@retekapp/ui";
 import { useAuthStore } from "@/stores/auth-store";
 import { ApiError, setTokens, getAccessToken } from "@/lib/api";
 
@@ -13,7 +13,7 @@ function LoginContent() {
   const login = useAuthStore((s) => s.login);
   const fetchMe = useAuthStore((s) => s.fetchMe);
   const isLoading = useAuthStore((s) => s.isLoading);
-  const [email, setEmail] = useState("dev1@retekgpt.dev");
+  const [email, setEmail] = useState("dev1@retek.dev");
   const [password, setPassword] = useState("password123");
   const [error, setError] = useState<string | null>(null);
 
@@ -42,7 +42,7 @@ function LoginContent() {
       <div className="mb-8 space-y-2">
         <div className="flex items-center gap-2 text-2xl font-bold text-slate-900">
           <span className="grid h-9 w-9 place-items-center rounded-xl gradient-brand text-white">R</span>
-          RetekGPT
+          Retek
         </div>
         <h2 className="text-xl font-semibold text-slate-700">Bem-vindo de volta 👋</h2>
         <p className="text-sm text-slate-500">Entre para continuar gerenciando suas tarefas.</p>
@@ -100,7 +100,7 @@ function LoginContent() {
         </Link>
       </p>
       <p className="mt-3 rounded-lg bg-slate-50 px-3 py-2 text-center text-xs text-slate-400">
-        Demo: dev1@retekgpt.dev · password123
+        Demo: dev1@retek.dev · password123
       </p>
     </Card>
   );

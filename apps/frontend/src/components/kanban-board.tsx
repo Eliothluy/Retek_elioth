@@ -8,7 +8,7 @@ import {
 } from "@dnd-kit/core";
 import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import { Plus, List, Columns } from "lucide-react";
-import { Button, Card, cn } from "@retekgpt/ui";
+import { Button, Card, cn } from "@retekapp/ui";
 import { TaskCard } from "@/components/task-card";
 import { TaskForm } from "@/components/task-form";
 import { Modal } from "@/components/ui/modal";

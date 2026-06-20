@@ -37,7 +37,7 @@ async function bootstrap() {
   app.enableShutdownHooks();
 
   await app.listen(port);
-  Logger.log(`🚀 RetekGPT API ready on http://localhost:${port}/api`, "Bootstrap");
+  Logger.log(`🚀 Retek API ready on http://localhost:${port}/api`, "Bootstrap");
   Logger.log(`🔌 Realtime (Socket.io) mounted at /realtime`, "Bootstrap");
 }
 

@@ -1,10 +1,10 @@
-# agents.md — RetekGPT
+# agents.md — Retek
 
 > Documentação técnica de referência para agentes de engenharia (humanos e IA) que trabalham neste repositório.
 
 ## 1. Visão geral
 
-**RetekGPT** é uma plataforma de **gestão de tarefas com características de rede social**, voltada para equipes de desenvolvimento. O objetivo é aumentar o engajamento e a conclusão de tarefas por meio de um feed social, gamificação (pontos, badges, ranking), notificações em tempo real e uma UX leve e agradável — um "Facebook interno" para times de software.
+**Retek** é uma plataforma de **gestão de tarefas com características de rede social**, voltada para equipes de desenvolvimento. O objetivo é aumentar o engajamento e a conclusão de tarefas por meio de um feed social, gamificação (pontos, badges, ranking), notificações em tempo real e uma UX leve e agradável — um "Facebook interno" para times de software.
 
 Comparável a: GitHub Projects + Jira (mais leve) + Facebook (UX).
 
@@ -32,7 +32,7 @@ Comparável a: GitHub Projects + Jira (mais leve) + Facebook (UX).
 ## 3. Arquitetura
 
 ```
-RetekGPT/
+Retek/
 ├── apps/
 │   ├── frontend/   # Next.js 14 (App Router) — UI, estado, socket client
 │   └── backend/    # NestJS — API REST + gateway WebSocket
@@ -128,8 +128,8 @@ cp apps/backend/.env.example apps/backend/.env
 cp apps/frontend/.env.example apps/frontend/.env
 
 # 4. Banco
-pnpm --filter @retekgpt/backend exec prisma migrate dev
-pnpm --filter @retekgpt/backend exec prisma db seed
+pnpm --filter @retekapp/backend exec prisma migrate dev
+pnpm --filter @retekapp/backend exec prisma db seed
 
 # 5. Rode tudo em paralelo
 pnpm dev
@@ -137,8 +137,8 @@ pnpm dev
 
 ### Credenciais de demo (seed)
 
-- `dev1@retekgpt.dev` / `password123`
-- `admin@retekgpt.dev` / `password123`
+- `dev1@retek.dev` / `password123`
+- `admin@retek.dev` / `password123`
 
 ## 7. Como escalar
 
@@ -153,7 +153,7 @@ pnpm dev
 ### Frontend (Vercel)
 
 1. Importar o repositório, root = `apps/frontend`.
-2. Build command: `cd ../.. && pnpm install && pnpm --filter @retekgpt/frontend build`.
+2. Build command: `cd ../.. && pnpm install && pnpm --filter @retekapp/frontend build`.
 3. Variáveis: `NEXT_PUBLIC_API_URL`, `NEXT_PUBLIC_SOCKET_URL` apontando para a API pública.
 
 ### Backend (Railway / Render / AWS ECS)

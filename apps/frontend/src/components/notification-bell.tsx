@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Bell, Check } from "lucide-react";
 import { useQueryClient } from "@tanstack/react-query";
-import { Button, cn } from "@retekgpt/ui";
+import { Button, cn } from "@retekapp/ui";
 import { useNotifications, useUnreadCount, useMarkRead, useMarkAllRead } from "@/hooks/use-notifications";
 import { useAuthStore } from "@/stores/auth-store";
 import { useFocusStore } from "@/stores/focus-store";

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { CheckCircle2, Clock, AlertTriangle, Zap, ArrowRight } from "lucide-react";
-import { Card, CardHeader, CardTitle, CardContent, Button, Skeleton } from "@retekgpt/ui";
+import { Card, CardHeader, CardTitle, CardContent, Button, Skeleton } from "@retekapp/ui";
 import { TaskCard } from "@/components/task-card";
 import { FeedItem } from "@/components/feed-item";
 import { useAuthStore } from "@/stores/auth-store";

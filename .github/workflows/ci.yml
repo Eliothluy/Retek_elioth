@@ -27,7 +27,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Generate Prisma client
-        run: pnpm --filter @retekgpt/backend exec prisma generate
+        run: pnpm --filter @retekapp/backend exec prisma generate
 
       - name: Typecheck
         run: pnpm typecheck
@@ -53,7 +53,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Build backend image
-        run: docker build -f apps/backend/Dockerfile -t retekgpt-backend:ci .
+        run: docker build -f apps/backend/Dockerfile -t retek-backend:ci .
 
       - name: Build frontend image
-        run: docker build -f apps/frontend/Dockerfile -t retekgpt-frontend:ci .
+        run: docker build -f apps/frontend/Dockerfile -t retek-frontend:ci .

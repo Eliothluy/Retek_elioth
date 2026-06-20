@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { Send, MessageCircle, Search } from "lucide-react";
-import { Avatar, Card, cn } from "@retekgpt/ui";
+import { Avatar, Card, cn } from "@retekapp/ui";
 import { useConversations, useMessages, useSendMessage } from "@/hooks/use-messages";
 import { useUsers } from "@/hooks/use-misc";
 import { useAuthStore } from "@/stores/auth-store";

@@ -2,7 +2,7 @@
 
 import { Pause, Play, SkipForward, RotateCcw, X, Coffee, Brain, CheckCircle2 } from "lucide-react";
 import { usePomodoroStore, formatTime, type PomodoroMode } from "@/stores/pomodoro-store";
-import { cn } from "@retekgpt/ui";
+import { cn } from "@retekapp/ui";
 import { useEffect, useRef } from "react";
 
 const MODE_META: Record<PomodoroMode, { label: string; icon: typeof Brain; color: string; ring: string; bg: string }> = {
@@ -49,7 +49,7 @@ export function PomodoroTimer() {
       document.title = `🍅 ${meta.label} ${formatTime(timeLeft)} — ${currentTaskTitle}`;
     }
     return () => {
-      if (typeof window !== "undefined") document.title = "RetekGPT — Gestão de Tarefas para Devs";
+      if (typeof window !== "undefined") document.title = "Retek — Gestão de Tarefas para Devs";
     };
   }, [timeLeft, mode, currentTaskTitle, meta.label]);
 

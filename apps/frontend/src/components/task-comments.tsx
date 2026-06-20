@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Send, Trash2 } from "lucide-react";
-import { Avatar, Card, CardHeader, CardTitle, cn } from "@retekgpt/ui";
+import { Avatar, Card, CardHeader, CardTitle, cn } from "@retekapp/ui";
 import { useTaskComments, useAddComment, useDeleteComment } from "@/hooks/use-task-comments";
 import { useAuthStore } from "@/stores/auth-store";
 import { MarkdownRenderer } from "./markdown-renderer";

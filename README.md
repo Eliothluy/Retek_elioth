@@ -102,18 +102,18 @@ pnpm dev
 
 | Perfil   | Email                     | Senha         |
 | -------- | ------------------------- | ------------- |
-| Admin    | `admin@retekgpt.dev`      | `password123` |
-| Dev 1    | `dev1@retekgpt.dev`       | `password123` |
-| Dev 2    | `dev2@retekgpt.dev`       | `password123` |
-| Dev 3    | `dev3@retekgpt.dev`       | `password123` |
-| Manager  | `manager@retekgpt.dev`    | `password123` |
+| Admin    | `admin@retek.dev`      | `password123` |
+| Dev 1    | `dev1@retek.dev`       | `password123` |
+| Dev 2    | `dev2@retek.dev`       | `password123` |
+| Dev 3    | `dev3@retek.dev`       | `password123` |
+| Manager  | `manager@retek.dev`    | `password123` |
 
 ---
 
 ## 📂 Estrutura do projeto
 
 ```
-RetekGPT/
+Retek/
 ├── apps/
 │   ├── frontend/              # Next.js 14 (App Router)
 │   │   ├── src/
@@ -297,7 +297,7 @@ Componentes compartilhados em `packages/ui`: Button, Card, Badge, Input, Textare
 ### Frontend (Vercel)
 
 1. Importar o repositório, root directory = `apps/frontend`
-2. Build: `cd ../.. && pnpm install && pnpm --filter @retekgpt/frontend build`
+2. Build: `cd ../.. && pnpm install && pnpm --filter @retekapp/frontend build`
 3. Variáveis: `NEXT_PUBLIC_API_URL`, `NEXT_PUBLIC_SOCKET_URL`
 
 ### Backend (Railway / Render / AWS ECS)

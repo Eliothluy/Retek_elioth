@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Bell, BellOff, Check } from "lucide-react";
-import { Button, Card, CardContent, CardHeader, CardTitle, Input, Textarea, cn } from "@retekgpt/ui";
+import { Button, Card, CardContent, CardHeader, CardTitle, Input, Textarea, cn } from "@retekapp/ui";
 import { useAuthStore } from "@/stores/auth-store";
 import { api } from "@/lib/api";
 import { useQueryClient } from "@tanstack/react-query";
@@ -41,7 +41,7 @@ export default function SettingsPage() {
       setNotifPermission("granted");
       setPushEnabled(true);
       localStorage.setItem("retek-push-enabled", "true");
-      showLocalNotification("RetekGPT 🔔", {
+      showLocalNotification("Retek 🔔", {
         body: "Notificações push ativadas com sucesso!",
         tag: "push-enabled",
       });

@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Pause, Play, X, ChevronUp, Brain, Coffee } from "lucide-react";
 import { usePomodoroStore, formatTime, type PomodoroMode } from "@/stores/pomodoro-store";
 import { PomodoroTimer } from "./pomodoro-timer";
-import { cn } from "@retekgpt/ui";
+import { cn } from "@retekapp/ui";
 
 const MODE_ICON: Record<PomodoroMode, typeof Brain> = {
   work: Brain,

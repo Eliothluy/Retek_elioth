@@ -1,8 +1,8 @@
 {
-  "name": "@retekgpt/backend",
+  "name": "@retekapp/backend",
   "version": "1.0.0",
   "private": true,
-  "description": "RetekGPT backend API (NestJS + Prisma + Redis + Socket.io)",
+  "description": "Retek backend API (NestJS + Prisma + Redis + Socket.io)",
   "scripts": {
     "build": "nest build",
     "dev": "nest start --watch",
@@ -47,7 +47,7 @@
     "socket.io": "^4.7.5"
   },
   "devDependencies": {
-    "@retekgpt/config": "workspace:*",
+    "@retekapp/config": "workspace:*",
     "@nestjs/cli": "^10.4.5",
     "@nestjs/schematics": "^10.1.4",
     "@nestjs/testing": "^10.4.1",

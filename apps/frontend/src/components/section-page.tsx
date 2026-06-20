@@ -2,7 +2,7 @@
 
 import { useParams } from "next/navigation";
 import { AlertTriangle, Bell } from "lucide-react";
-import { Card, Badge } from "@retekgpt/ui";
+import { Card, Badge } from "@retekapp/ui";
 import { TaskCard } from "@/components/task-card";
 import { useTasks } from "@/hooks/use-tasks";
 import { useNotifications } from "@/hooks/use-notifications";

@@ -2,8 +2,8 @@
 
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { cn } from "@retekgpt/ui";
-import { Badge } from "@retekgpt/ui";
+import { cn } from "@retekapp/ui";
+import { Badge } from "@retekapp/ui";
 import { STATUS_LABELS, STATUS_COLORS, PRIORITY_LABELS, PRIORITY_COLORS } from "@/lib/constants";
 import { formatDate } from "@/lib/utils";
 import type { Task } from "@/types";

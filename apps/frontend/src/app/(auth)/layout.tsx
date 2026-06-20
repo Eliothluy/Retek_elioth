@@ -9,7 +9,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
         <div className="absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-success-500/20 blur-3xl" />
         <div className="relative z-10 flex items-center gap-2 text-xl font-semibold">
           <span className="grid h-9 w-9 place-items-center rounded-xl bg-white/15 backdrop-blur">R</span>
-          RetekGPT
+          Retek
         </div>
         <div className="relative z-10 space-y-6">
           <h1 className="text-4xl font-bold leading-tight text-balance">
@@ -26,7 +26,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
             ))}
           </div>
         </div>
-        <p className="relative z-10 text-sm text-white/60">© {new Date().getFullYear()} RetekGPT</p>
+        <p className="relative z-10 text-sm text-white/60">© {new Date().getFullYear()} Retek</p>
       </div>
       <div className="flex items-center justify-center p-6 sm:p-12">{children}</div>
     </div>

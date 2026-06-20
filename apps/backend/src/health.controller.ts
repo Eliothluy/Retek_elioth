@@ -8,7 +8,7 @@ export class HealthController {
   check() {
     return {
       status: "ok",
-      service: "retekgpt-backend",
+      service: "retek-backend",
       timestamp: new Date().toISOString(),
       uptime: process.uptime(),
     };

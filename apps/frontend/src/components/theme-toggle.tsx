@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { Moon, Sun } from "lucide-react";
 import { useThemeStore } from "@/stores/theme-store";
-import { cn } from "@retekgpt/ui";
+import { cn } from "@retekapp/ui";
 
 export function ThemeToggle() {
   const { theme, toggle } = useThemeStore();

@@ -1,7 +1,7 @@
 "use client";
 
 import { Award, Zap, CheckCircle2, Calendar } from "lucide-react";
-import { Avatar, Card, CardContent, CardHeader, CardTitle, Skeleton, cn } from "@retekgpt/ui";
+import { Avatar, Card, CardContent, CardHeader, CardTitle, Skeleton, cn } from "@retekapp/ui";
 import { useAuthStore } from "@/stores/auth-store";
 import { useTasks } from "@/hooks/use-tasks";
 import { useRankingCategory } from "@/hooks/use-ranking";

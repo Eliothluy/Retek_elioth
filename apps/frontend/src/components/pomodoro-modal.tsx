@@ -5,7 +5,7 @@ import { CheckCircle2 } from "lucide-react";
 import { Modal } from "@/components/ui/modal";
 import { PomodoroTimer } from "@/components/pomodoro-timer";
 import { usePomodoroStore } from "@/stores/pomodoro-store";
-import { Button } from "@retekgpt/ui";
+import { Button } from "@retekapp/ui";
 
 interface PomodoroModalProps {
   open: boolean;

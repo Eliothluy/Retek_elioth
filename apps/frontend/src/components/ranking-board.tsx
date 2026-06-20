@@ -1,7 +1,7 @@
 "use client";
 
 import { Trophy, Medal, Award } from "lucide-react";
-import { Avatar, cn } from "@retekgpt/ui";
+import { Avatar, cn } from "@retekapp/ui";
 import type { RankingEntry } from "@/types";
 import { useAuthStore } from "@/stores/auth-store";
 

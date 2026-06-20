@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Heart, MessageCircle, Send } from "lucide-react";
-import { Avatar, Badge, cn } from "@retekgpt/ui";
+import { Avatar, Badge, cn } from "@retekapp/ui";
 import type { ActivityFeed as ActivityFeedType } from "@/types";
 import { ACTIVITY_LABELS, STATUS_LABELS, STATUS_COLORS } from "@/lib/constants";
 import { timeAgo } from "@/lib/utils";

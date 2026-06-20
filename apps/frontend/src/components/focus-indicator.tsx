@@ -2,7 +2,7 @@
 
 import { Headphones } from "lucide-react";
 import { useFocusStore } from "@/stores/focus-store";
-import { cn } from "@retekgpt/ui";
+import { cn } from "@retekapp/ui";
 
 export function FocusIndicator() {
   const isFocusMode = useFocusStore((s) => s.isFocusMode);

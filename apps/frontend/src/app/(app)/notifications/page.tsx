@@ -1,10 +1,10 @@
 "use client";
 
 import { CheckCheck } from "lucide-react";
-import { Button, Card } from "@retekgpt/ui";
+import { Button, Card } from "@retekapp/ui";
 import { useNotifications, useMarkAllRead, useMarkRead } from "@/hooks/use-notifications";
 import { timeAgo } from "@/lib/utils";
-import { cn } from "@retekgpt/ui";
+import { cn } from "@retekapp/ui";
 
 const TYPE_ICON: Record<string, string> = {
   TASK_ASSIGNED: "📋",

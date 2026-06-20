@@ -4,15 +4,15 @@ import * as bcrypt from "bcryptjs";
 const prisma = new PrismaClient();
 
 async function main() {
-  console.log("🌱 Seeding RetekGPT database...");
+  console.log("🌱 Seeding Retek database...");
 
   const password = await bcrypt.hash("password123", 12);
 
   const admin = await prisma.user.upsert({
-    where: { email: "admin@retekgpt.dev" },
+    where: { email: "admin@retek.dev" },
     update: {},
     create: {
-      email: "admin@retekgpt.dev",
+      email: "admin@retek.dev",
       name: "Ana Admin",
       title: "Engineering Lead",
       role: UserRole.ADMIN,
@@ -23,10 +23,10 @@ async function main() {
   });
 
   const manager = await prisma.user.upsert({
-    where: { email: "manager@retekgpt.dev" },
+    where: { email: "manager@retek.dev" },
     update: {},
     create: {
-      email: "manager@retekgpt.dev",
+      email: "manager@retek.dev",
       name: "Marcos Manager",
       title: "Project Manager",
       role: UserRole.MANAGER,
@@ -43,10 +43,10 @@ async function main() {
       { name: "Diana Dev", title: "Fullstack Engineer", points: 195 },
     ].map((d, i) =>
       prisma.user.upsert({
-        where: { email: `dev${i + 1}@retekgpt.dev` },
+        where: { email: `dev${i + 1}@retek.dev` },
         update: {},
         create: {
-          email: `dev${i + 1}@retekgpt.dev`,
+          email: `dev${i + 1}@retek.dev`,
           name: d.name,
           title: d.title,
           role: UserRole.DEVELOPER,
@@ -68,7 +68,7 @@ async function main() {
     update: {},
     create: {
       id: "seed-project-1",
-      name: "RetekGPT Platform",
+      name: "Retek Platform",
       description: "Plataforma social de gestão de tarefas",
       color: "#3B82F6",
       ownerId: admin.id,
@@ -135,13 +135,13 @@ async function main() {
       { userId: carla.id, type: "TASK_ASSIGNED", title: "Nova tarefa atribuída", message: "Feed social em tempo real" },
       { userId: bruno.id, type: "TASK_LATE", title: "Tarefa atrasada", message: "Notificações WebSocket passou do prazo" },
       { userId: carla.id, type: "RANK_UPDATE", title: "Subiu no ranking!", message: "Você é o #1 em Performance" },
-      { userId: manager.id, type: "SYSTEM", title: "Bem-vindo ao RetekGPT", message: "Plataforma pronta para uso" },
+      { userId: manager.id, type: "SYSTEM", title: "Bem-vindo ao Retek", message: "Plataforma pronta para uso" },
     ],
   });
 
   console.log(`✅ Seeded ${allUsers.length} users, 1 project, ${tasks.length} tasks, notifications`);
-  console.log("   Demo login: dev1@retekgpt.dev / password123");
-  console.log("   Admin login: admin@retekgpt.dev / password123");
+  console.log("   Demo login: dev1@retek.dev / password123");
+  console.log("   Admin login: admin@retek.dev / password123");
 }
 
 main()

@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { ChevronLeft, ChevronRight, Calendar as CalIcon } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle, Badge, cn } from "@retekgpt/ui";
+import { Card, CardContent, CardHeader, CardTitle, Badge, cn } from "@retekapp/ui";
 import { useTasks } from "@/hooks/use-tasks";
 import { useUpdateTaskStatus } from "@/hooks/use-tasks";
 import { STATUS_LABELS, STATUS_COLORS } from "@/lib/constants";

@@ -7,15 +7,15 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
   title: {
-    default: "RetekGPT — Gestão de Tarefas para Devs",
-    template: "%s · RetekGPT",
+    default: "Retek — Gestão de Tarefas para Devs",
+    template: "%s · Retek",
   },
   description:
     "Plataforma social de gestão de tarefas para equipes de desenvolvimento. Engajamento, gamificação e produtividade em um só lugar.",
   keywords: ["gestão de tarefas", "desenvolvedores", "produtividade", "gamificação", "feed social"],
-  authors: [{ name: "RetekGPT" }],
+  authors: [{ name: "Retek" }],
   openGraph: {
-    title: "RetekGPT — Gestão de Tarefas para Devs",
+    title: "Retek — Gestão de Tarefas para Devs",
     description: "Plataforma social de gestão de tarefas para equipes de desenvolvimento.",
     type: "website",
     locale: "pt_BR",

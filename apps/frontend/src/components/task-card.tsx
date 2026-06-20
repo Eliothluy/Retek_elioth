@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { AlertTriangle, Clock, Calendar } from "lucide-react";
-import { Avatar, Badge, cn } from "@retekgpt/ui";
+import { Avatar, Badge, cn } from "@retekapp/ui";
 import type { Task } from "@/types";
 import { STATUS_LABELS, STATUS_COLORS, PRIORITY_LABELS, PRIORITY_COLORS } from "@/lib/constants";
 import { formatDate } from "@/lib/utils";
