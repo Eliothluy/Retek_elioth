@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Button, Input, Card } from "@retekapp/ui";
 import { useAuthStore } from "@/stores/auth-store";
 import { ApiError, setTokens, getAccessToken } from "@/lib/api";
+import { Sec365Logo } from "@/components/sec365-logo";
 
 function LoginContent() {
   const router = useRouter();
@@ -102,6 +103,11 @@ function LoginContent() {
       <p className="mt-3 rounded-lg bg-slate-50 px-3 py-2 text-center text-xs text-slate-400">
         Demo: dev1@retek.dev · password123
       </p>
+
+      <div className="mt-5 flex items-center justify-center gap-2 border-t border-slate-100 pt-4">
+        <span className="text-xs text-slate-400">Uma empresa</span>
+        <Sec365Logo className="h-6" />
+      </div>
     </Card>
   );
 }

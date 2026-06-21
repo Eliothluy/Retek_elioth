@@ -27,6 +27,7 @@ import {
 } from "lucide-react";
 import { cn } from "@retekapp/ui";
 import { useUnreadCount } from "@/hooks/use-notifications";
+import { Sec365Logo } from "./sec365-logo";
 
 interface NavItem {
   label: string;
@@ -131,6 +132,10 @@ export function Sidebar() {
         <NavGroup title="Menu Empresa" items={empresa} />
         <NavGroup title="Menu Negócios" items={negocios} />
       </nav>
+
+      <div className="border-t border-slate-200 px-5 py-3 dark:border-slate-700">
+        <Sec365Logo caption="Parceria" className="h-6" />
+      </div>
     </aside>
   );
 }

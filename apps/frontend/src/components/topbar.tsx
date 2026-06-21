@@ -9,6 +9,7 @@ import { NotificationBell } from "./notification-bell";
 import { ThemeToggle } from "./theme-toggle";
 import { FocusIndicator } from "./focus-indicator";
 import { useAuthStore } from "@/stores/auth-store";
+import { Sec365Logo } from "./sec365-logo";
 
 export function Topbar() {
   const router = useRouter();
@@ -31,6 +32,7 @@ export function Topbar() {
 
   return (
     <header className="sticky top-0 z-40 flex h-16 items-center gap-3 border-b border-slate-200 bg-white/80 px-4 backdrop-blur-md dark:border-slate-700 dark:bg-slate-800/80 sm:px-6">
+      <Sec365Logo className="h-7 shrink-0" />
       <div className="relative hidden flex-1 sm:block sm:max-w-md">
         <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
         <input
