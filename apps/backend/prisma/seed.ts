@@ -64,10 +64,10 @@ async function main() {
   const diana = devs[2]!;
 
   const project = await prisma.project.upsert({
-    where: { id: "seed-project-1" },
+    where: { id: "11111111-1111-4111-8111-111111111111" },
     update: {},
     create: {
-      id: "seed-project-1",
+      id: "11111111-1111-4111-8111-111111111111",
       name: "Retek Platform",
       description: "Plataforma social de gestão de tarefas",
       color: "#3B82F6",

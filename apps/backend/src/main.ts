@@ -16,7 +16,7 @@ async function bootstrap() {
   app.use(cookieParser());
 
   app.enableCors({
-    origin: [frontendUrl, "http://localhost:3000", "http://127.0.0.1:3000", "http://localhost:3001", "http://127.0.0.1:3001", "http://192.168.15.111:3001"],
+    origin: [frontendUrl, "http://localhost:3000", "http://127.0.0.1:3000", "http://192.168.15.111:3000", "http://localhost:3001", "http://127.0.0.1:3001", "http://192.168.15.111:3001"],
     credentials: true,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
   });
